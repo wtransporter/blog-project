@@ -1,0 +1,30 @@
+@props(['post'])
+
+<article {{ $attributes->merge(['class' => 'mt-8 border border-transparent hover:border-black hover:border-opacity-5 hover:bg-gray-100 rounded-xl p-6 transition-colors duration-300']) }}>
+    <div class="flex-1 lg:mr-8 w-full">
+        <img class="rounded-xl w-full" src="{{ asset('img/image4.png') }}" alt="Image 4">
+    </div>
+    <div class="flex-1 flex flex-col justify-between">
+        <header class="mt-8">
+            <x-category-button :category="$post->category" />
+        </header>
+        <div class="text-3xl mt-4">
+            <h1>
+                {{ $post->title }}
+            </h1>
+            <span class="block text-xs text-gray-400 mt-2">Published {{ $post->created_at->diffForHumans() }}</span>
+        </div>
+        <div class="text-sm mt-2">
+            {!! $post->excerpt !!}
+        </div>
+        <div class="flex items-center mt-8 justify-between">
+            <div class="flex items-center space-x-2">
+                <img class="h-16 rounded-md" src="{{ asset('img/avatar.png') }}" alt="Avatar">
+                <div class="text-sm">
+                    <h3 class="font-bold">{{ $post->author->name }}</h3>
+                </div>
+            </div>
+            <a class="text-xs  font-semibold bg-gray-200 px-8 py-2 rounded-full" href="/posts/{{ $post->slug }}">Read More</a>
+        </div>
+    </div>
+</article>

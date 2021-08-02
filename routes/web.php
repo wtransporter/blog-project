@@ -30,7 +30,8 @@ Route::get('posts/{post:slug}', function (Post $post) {
 
 Route::get('categories/{category:slug}', function(Category $category) {
     return view('posts.index', [
-        'posts' => $category->posts->load('category', 'author')
+        'posts' => $category->posts->load('category', 'author'),
+        'selectedCategory' => $category
     ]);
 });
 

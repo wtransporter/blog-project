@@ -29,6 +29,9 @@
 
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl py-2 px-4">
             <form action="/" method="GET">
+                @if (request('category'))
+                    <input id="category" name="category" type="hidden" value="{{ request('category') }}">
+                @endif
                 <input id="search" name="search" 
                     class="flex lg:inline-flex items-center bg-gray-100 rounded-xl placeholder-black text-sm font-semibold" 
                     type="text" placeholder="Search" value="{{ request('search') }}">

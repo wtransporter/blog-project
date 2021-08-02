@@ -1,6 +1,6 @@
 <x-layout>
 
-    <x-posts-header :categories="$categories" :selectedCategory="$selectedCategory ?? ''"/>
+    <x-posts-header />
 
     <main class="max-w-6xl mx-auto">
         @if ($posts->count())

@@ -11,7 +11,7 @@
                     <img class="inline-flex h-16 rounded-md mr-2" src="{{ asset('img/avatar.png') }}" alt="Avatar">
                     <div class="text-sm">
                         <h3>
-                            By <a class="font-bold hover:text-blue-500" href="/authors/{{ $post->author->username }}">{{ $post->author->name }}</a>
+                            <a class="font-bold hover:text-blue-500" href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a>
                         </h3>
                     </div>
                 </div>

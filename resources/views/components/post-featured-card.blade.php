@@ -23,8 +23,8 @@
             <div class="flex items-center space-x-2">
                 <img class="h-16 rounded-md" src="{{ asset('img/avatar.png') }}" alt="Avatar">
                 <div class="text-sm">
-                    <h3 class="font-bold">
-                        {{ $post->author->name }}
+                    <h3>
+                        <a class="font-bold hover:text-blue-500" href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a>
                     </h3>
                 </div>
             </div>

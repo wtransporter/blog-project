@@ -9,26 +9,7 @@
     </p>
     <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
-            <x-dropdown>
-                <x-slot name="trigger">
-                    <button class="bg-gray-100 py-2 pl-3 pr-9 w-32 rounded-xl felx lg:inline-flex items-center text-sm font-semibold">
-                        {{ $selectedCategory ? ucwords($selectedCategory->name) : 'Category' }}
-                        <x-down-arrow class="absolute pointer-events-none" style="right: 12px;"/>
-                    </button>
-                </x-slot>
-
-                <x-dropdown-item href="/" :active="request()->is('/')">
-                    All
-                </x-dropdown-item>
-                @foreach ($categories as $category)
-                    <x-dropdown-item 
-                        href="/categories/{{ $category->slug }}"
-                        :active='request()->is("categories/{$category->slug}")'
-                    >
-                        {{ ucwords($category->name) }}
-                    </x-dropdown-item>
-                @endforeach
-            </x-dropdown>
+            <x-categories-dropdown />
         </div>
 
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
@@ -47,8 +28,10 @@
         </div>
 
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl py-2 px-4">
-            <form action="" method="POST">
-                <input class="flex lg:inline-flex items-center bg-gray-100 rounded-xl placeholder-black text-sm font-semibold" type="text" placeholder="Search">
+            <form action="/" method="GET">
+                <input id="search" name="search" 
+                    class="flex lg:inline-flex items-center bg-gray-100 rounded-xl placeholder-black text-sm font-semibold" 
+                    type="text" placeholder="Search" value="{{ request('search') }}">
             </form>
         </div>
     </div>

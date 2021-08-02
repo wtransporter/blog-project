@@ -15,7 +15,7 @@
                 @endforeach
             </div>
         @else
-            <p>No posts yet. Please check later.</p>
+            <p class="text-center mt-8">No posts yet. Please check later.</p>
         @endif
     </main>
 

@@ -13,8 +13,17 @@
                     <img class="h-10" src="{{ asset('img/logo.png') }}" alt="Logo">
                 </a>
             </div>
-            <div class="mt-8 md:mt-0">
-                <a class="uppercase text-xs font-bold" href="/">Home page</a>
+            <div class="mt-8 md:mt-0 flex items-center text-blue-500">
+                @auth
+                    <a href="{{ url('/dashboard') }}" class="text-xs text-gray-700 hover:underline mr-4 flex items-center">Dashboard</a>
+                    <form action="/logout" method="POST" class="text-xs">
+                        @csrf
+                        <button class="uppercase text-xs font-bold" href="/logout">Log Out</button>
+                    </form>
+                @else
+                    <a class="uppercase text-xs font-bold" href="/register">Register</a>
+                    <a class="uppercase text-xs font-bold ml-4" href="/login">Log In</a>
+                @endauth
                 <a class="bg-blue-500 text-white ml-3 py-3 px-5 rounded-full uppercase text-xs font-semibold" href="">Subscribe For Updates</a>
             </div>
         </nav>
@@ -41,4 +50,12 @@
             </div>
         </footer>
     </section>
+    @if (session()->has('success'))
+        <div x-data="{ show: true }"
+             x-init="setTimeout(() => show = false, 4000)"
+             x-show="show"
+             class="fixed bottom-5 right-3 p-2 bg-green-500 text-white text-sm text-center rounded font-semibold">
+            <p>{{ session('success') }}</p>
+        </div>
+    @endif
 </body>

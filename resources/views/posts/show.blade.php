@@ -32,6 +32,12 @@
                 <div class="text-lg mt-2 space-y-4">
                     {!! $post->body !!}
                 </div>
+
+                <section class="mt-8 space-y-4">
+                    @foreach ($post->comments as $comment)
+                        <x-post-comment :comment="$comment"/>
+                    @endforeach
+                </section>
             </div>
         </article>
     </main>

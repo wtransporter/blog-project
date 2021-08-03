@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $user = \App\Models\User::factory()->create();
+        $user = \App\Models\User::factory(10)->create();
 
         \App\Models\Category::create([
             'name' => 'Lifestyle',
@@ -32,11 +32,18 @@ class DatabaseSeeder extends Seeder
             'slug' => 'world'
         ]);
 
+        \App\Models\Category::create([
+            'name' => 'Sports',
+            'slug' => 'sports'
+        ]);
+
         Category::all()->each(function($category) use ($user){
-            return \App\Models\Post::factory(2)->create([
-                'user_id' => $user->id,
+            return \App\Models\Post::factory(5)->create([
+                'user_id' => rand(1,9),
                 'category_id' => $category->id
-            ]);
+            ])->each(fn($post) => \App\Models\Comment::factory(3)->create(['post_id' => $post->id]));
         });
+
+        \App\Models\Category::factory(30)->create();
     }
 }

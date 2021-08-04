@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 
 /*
@@ -18,6 +19,8 @@ use App\Http\Controllers\PostCommentsController;
 Route::get('/', [PostController::class, 'index']);
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
+
+Route::post('/newsletter', NewsletterController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -5,6 +5,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="//unpkg.com/alpinejs" defer></script>
 
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
+
 <body style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
         <nav class="md:flex md:justify-between lg:items-center border-b border-gray-500 border-opacity-30 pb-8">
@@ -24,7 +30,7 @@
                     <a class="uppercase text-xs font-bold" href="/register">Register</a>
                     <a class="uppercase text-xs font-bold ml-4" href="/login">Log In</a>
                 @endauth
-                <a class="bg-blue-500 text-white ml-3 py-3 px-5 rounded-full uppercase text-xs font-semibold" href="">Subscribe For Updates</a>
+                <a class="bg-blue-500 text-white ml-3 py-3 px-5 rounded-full uppercase text-xs font-semibold" href="#newsletter">Subscribe For Updates</a>
             </div>
         </nav>
 
@@ -36,17 +42,23 @@
                 <h2 class="text-3xl">Follow updates about our latest blog posts</h2>
                 <span class="text-sm mt-3">We will not be anoying.</span>
             </div>
-            <div class="mt-8">
+            <div id="newsletter" class="mt-8">
                 <div class="relative inline-block lg:bg-gray-200 mx-auto text-sm rounded-full">
-                    <form action="" method="POST" class="lg:flex items-center">
+                    <form action="/newsletter" method="POST" class="lg:flex items-center">
+                        @csrf
                         <div class="lg:flex">
-                            <input class="py-3 px-5 lg:bg-transparent focus-within:outline-none" type="email" id="email" placeholder="Your e-mail address">
+                            <input name="email" class="py-3 px-5 lg:bg-transparent focus-within:outline-none" 
+                                type="email"
+                                id="email"
+                                placeholder="Your e-mail address"
+                                required>
                         </div>
                         <button class="lg:-ml-10 py-3 px-8 rounded-full font-semibold uppercase text-white transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0" href="" type="submit">
                             Subscribe
                         </button>
                     </form>
                 </div>
+                <x-input-error for="email" />
             </div>
         </footer>
     </section>

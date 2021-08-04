@@ -7,7 +7,7 @@
 
 <body style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
-        <nav class="md:flex md:justify-between lg:items-center">
+        <nav class="md:flex md:justify-between lg:items-center border-b border-gray-500 border-opacity-30 pb-8">
             <div>
                 <a href="/">
                     <img class="h-10" src="{{ asset('img/logo.png') }}" alt="Logo">

@@ -21,7 +21,7 @@
         </div>
         <div class="flex items-center mt-8 justify-between">
             <div class="flex items-center space-x-2">
-                <img class="h-16 rounded-md" src="{{ asset('img/avatar.png') }}" alt="Avatar">
+                <img class="rounded-full" src="https://i.pravatar.cc/50?u={{ $post->author->id }}" alt="Avatar" width="50" height="50">
                 <div class="text-sm">
                     <h3>
                         <a class="font-bold hover:text-blue-500" href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a>

@@ -1,4 +1,9 @@
 <header class="max-w-xl mx-auto mt-16 text-center">
+    @if ($errors->any())
+        <section class="pb-4">
+            <p class="text-red-700 text-xs mt-2 p-3 bg-red-200 rounded font-semibold">{{ $errors->first() }}</p>
+        </section>
+    @endif
     <h1 class="text-4xl">Latest News</h1>
     <div class="inline-flex mt-2 mr-1 items-center">
         <span class="mr-1">By AUthor</span>

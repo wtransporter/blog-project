@@ -20,6 +20,13 @@ class AdminPostController extends Controller
         return view('admin.posts.edit', compact('post'));
     }
 
+    /**
+     * Update given resource
+     *
+     * @param Post $post
+     * @param StorePostRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Post $post, StorePostRequest $request)
     {
         $attributes = $request->validated();
@@ -52,5 +59,18 @@ class AdminPostController extends Controller
         auth()->user()->posts()->create($attributes);
 
         return redirect('/admin/posts/create')->with('success', 'Post successfully created.');
+    }
+
+    /**
+     * Delete resource from database
+     *
+     * @param Post $post
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Post $post)
+    {
+        $post->delete();
+
+        return redirect()->route('admin.posts.index')->with('success', 'Post deleted.');
     }
 }

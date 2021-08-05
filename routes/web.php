@@ -27,6 +27,7 @@ Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function() {
     Route::post('posts', [AdminPostController::class, 'store'])->name('admin.posts.store');
     Route::get('posts/{post}/edit', [AdminPostController::class, 'edit'])->name('admin.posts.edit');
     Route::patch('posts/{post}', [AdminPostController::class, 'update'])->name('admin.posts.update');
+    Route::delete('posts/{post}', [AdminPostController::class, 'destroy'])->name('admin.posts.destroy');
 });
 
 Route::post('/newsletter', NewsletterController::class);

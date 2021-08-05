@@ -26,7 +26,7 @@
                                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Status
                                                 </th>
-                                                <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Action
                                                 </th>
                                             </tr>
@@ -52,8 +52,13 @@
                                                         {{ $post->published_at ? 'published' : 'Unpablished' }}
                                                         </span>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex space-x-2">
                                                         <a href="{{ route('admin.posts.edit', $post->id) }}" class="text-blue-500 hover:text-blue-700">Edit</a>
+                                                        <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="text-gray-400 hover:text-gray-600">Delete</button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach

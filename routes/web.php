@@ -22,8 +22,10 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 
 Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function() {
+    Route::get('posts', [AdminPostController::class, 'index'])->name('admin.posts.index');
     Route::get('posts/create', [AdminPostController::class, 'create'])->name('admin.posts.create');
-    Route::post('posts', [AdminPostController::class, 'store']);
+    Route::get('posts/{post}/edit', [AdminPostController::class, 'edit'])->name('admin.posts.edit');
+    Route::post('posts', [AdminPostController::class, 'store'])->name('admin.posts.store');
 });
 
 Route::post('/newsletter', NewsletterController::class);

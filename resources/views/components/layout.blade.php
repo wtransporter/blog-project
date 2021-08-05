@@ -21,7 +21,7 @@
             </div>
             <div class="mt-8 md:mt-0 flex items-center text-blue-500">
                 @auth
-                    <a href="{{ url('/dashboard') }}" class="text-xs text-gray-700 hover:underline mr-4 flex items-center">Dashboard</a>
+                    <a href="{{ route('admin.posts.index') }}" class="text-xs text-gray-700 hover:underline mr-4 flex items-center">Dashboard</a>
                     <form action="/logout" method="POST" class="text-xs">
                         @csrf
                         <button class="uppercase text-xs font-bold" href="/logout">Log Out</button>

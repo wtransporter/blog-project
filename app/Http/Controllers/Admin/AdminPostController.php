@@ -15,6 +15,24 @@ class AdminPostController extends Controller
         ]);
     }
 
+    public function edit(Post $post)
+    {
+        return view('admin.posts.edit', compact('post'));
+    }
+
+    public function update(Post $post, StorePostRequest $request)
+    {
+        $attributes = $request->validated();
+
+        if ($request->has('image')) {
+            $attributes['image'] = $request->file('image')->store('posts');
+        }
+
+        $post->update($attributes);
+
+        return redirect()->route('admin.posts.edit', $post)->with('success', 'Post updated successfully.');
+    }
+
     public function create()
     {
         return view('admin.posts.create');

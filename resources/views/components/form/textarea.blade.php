@@ -9,6 +9,6 @@
     name="{{ $name }}" 
     id="{{ $name }}" 
     rows="{{ $rows }}" 
-    required>{{ old($name) }}</textarea>
+    required>{{ $slot == '' ? old($name) : $slot }}</textarea>
 
 <x-input-error for="{{ $name }}" />

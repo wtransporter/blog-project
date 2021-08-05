@@ -28,10 +28,10 @@ class StorePostRequest extends FormRequest
         return [
             'category_id' => ['required', 'exists:categories,id'],
             'title' => ['required'],
-            'image' => ['required', 'image'],
+            'image' => $this->post ? ['image'] : ['required', 'image'],
             'excerpt' => ['required'],
             'body' => ['required'],
-            'slug' => ['required', Rule::unique('posts', 'slug')]
+            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($this->post)]
         ];
     }
 

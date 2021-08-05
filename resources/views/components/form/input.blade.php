@@ -8,7 +8,6 @@
     type="{{ $type }}" 
     name="{{ $name }}" 
     id="{{ $name }}" 
-    required 
-    value="{{ old($name) }}">
+    {{ $attributes(['value' => old($name)]) }}>
 
 <x-input-error for="{{ $name }}" />

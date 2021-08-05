@@ -12,35 +12,10 @@
                     <form action="/admin/posts" method="POST" enctype="multipart/form-data">
                         @csrf
                         <x-input-error for="slug" />
-                        <label class="block mt-4 uppercase font-semibold text-xs text-gray-700" for="title">
-                            Title
-                        </label>
-                        
-                        <input class="border border-gray-400 focus:border-blue-300 p-2 w-full rounded focus:ring-1 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none"
-                            type="text" name="title" id="title" required value="{{ old('title') }}">
-                        @error('title')
-                            <p class="text-xs text-red-500 italic mt-2" for="title">{{ $message }}</p>
-                        @enderror
+                        <x-form.input name="title" />
 
-                        <label class="block mt-4 uppercase font-semibold text-xs text-gray-700" for="excerpt">
-                            Excerpt (Short description)
-                        </label>
-                        
-                        <textarea class="border border-gray-400 focus:border-blue-300 p-2 w-full rounded focus:ring-1 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none"
-                            type="text" name="excerpt" id="excerpt" rows="3" required>{{ old('excerpt') }}</textarea>
-                        @error('excerpt')
-                            <p class="text-xs text-red-500 italic mt-2" for="excerpt">{{ $message }}</p>
-                        @enderror
-
-                        <label class="block mt-4 uppercase font-semibold text-xs text-gray-700" for="body">
-                            Body
-                        </label>
-                        
-                        <textarea class="border border-gray-400 focus:border-blue-300 p-2 w-full rounded focus:ring-1 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none"
-                            type="text" name="body" id="body" rows="5" required>{{ old('body') }}</textarea>
-                        @error('body')
-                            <p class="text-xs text-red-500 italic mt-2" for="body">{{ $message }}</p>
-                        @enderror
+                        <x-form.textarea name="excerpt" />
+                        <x-form.textarea name="body" rows="5" />
 
                         <label class="block mt-4 uppercase font-semibold text-xs text-gray-700" for="image">
                             Image

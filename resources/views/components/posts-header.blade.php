@@ -4,13 +4,10 @@
             <p class="text-red-700 text-xs mt-2 p-3 bg-red-200 rounded font-semibold">{{ $errors->first() }}</p>
         </section>
     @endif
-    <h1 class="text-4xl">Latest News</h1>
-    <div class="inline-flex mt-2 mr-1 items-center">
-        <span class="mr-1">By AUthor</span>
-        <img class="h-8 rounded-xl" src="{{ asset('img/avatar.png') }}" alt="Author image">
-    </div>
+    <h1 class="text-5xl font-semibold">Follow Latest News</h1>
+
     <p class="text-sm mt-14">
-        A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dignissim sagittis luctus. Fusce arcu leo, tempus eu tortor tristique, imperdiet ornare purus. Nam vulputate vehicula aliquet.
     </p>
     <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">

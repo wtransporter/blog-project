@@ -2,19 +2,21 @@
 
 <article class="lg:flex mt-8 border border-transparent hover:border-black hover:border-opacity-5 hover:bg-gray-100 rounded-xl p-6 transition-colors duration-300">
     <div class="flex-1 lg:mr-8">
-        <img class="rounded-xl" src="{{ asset('img/image1.jpg') }}" alt="Image 1">
+        <img class="rounded-xl" src="{{ asset($post->image ? 'storage/'.$post->image : 'img/image5.png') }}" alt="Image 1">
     </div>
     <div class="flex-1 flex flex-col justify-between">
-        <header class="mt-8 lg:mt-0">
-            <x-category-button :category="$post->category" />
-        </header>
-        <div class="text-3xl mt-4">
-            <h1>
-                {{ $post->title }}
-            </h1>
-            <span class="block text-xs text-gray-400 mt-2">
-                Published <time>{{ $post->created_at->diffForHumans() }}</time>
-            </span>
+        <div>
+            <header class="mt-8 lg:mt-0">
+                <x-category-button :category="$post->category" />
+            </header>
+            <div class="text-3xl mt-4">
+                <h1>
+                    {{ $post->title }}
+                </h1>
+                <span class="block text-xs text-gray-400 mt-2">
+                    Published <time>{{ $post->created_at->diffForHumans() }}</time>
+                </span>
+            </div>
         </div>
         <div class="text-sm mt-2">
             {!! $post->excerpt !!}

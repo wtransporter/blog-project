@@ -21,6 +21,7 @@ class AdminPostController extends Controller
     public function store(StorePostRequest $request)
     {
         $attributes = $request->validated();
+        $attributes['image'] = $request->file('image')->store('posts');
 
         auth()->user()->posts()->create($attributes);
 

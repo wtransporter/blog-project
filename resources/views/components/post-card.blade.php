@@ -2,7 +2,7 @@
 
 <article {{ $attributes->merge(['class' => 'mt-8 border border-transparent hover:border-black hover:border-opacity-5 hover:bg-gray-100 rounded-xl p-6 transition-colors duration-300']) }}>
     <div class="flex-1 lg:mr-8 w-full">
-        <img class="rounded-xl w-full" src="{{ asset('img/image4.png') }}" alt="Image 4">
+        <img class="rounded-xl w-full" src="{{ asset($post->image ? 'storage/'.$post->image : 'img/image4.png') }}" alt="Image 4">
     </div>
     <div class="flex-1 flex flex-col justify-between">
         <header class="mt-8">

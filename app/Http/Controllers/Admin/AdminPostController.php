@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 
@@ -22,8 +21,6 @@ class AdminPostController extends Controller
     public function store(StorePostRequest $request)
     {
         $attributes = $request->validated();
-
-        $attributes['slug'] = Str::slug(request('title'));
 
         auth()->user()->posts()->create($attributes);
 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StorePostRequest extends FormRequest
 {
@@ -27,7 +29,20 @@ class StorePostRequest extends FormRequest
             'category_id' => ['required', 'exists:categories,id'],
             'title' => ['required'],
             'excerpt' => ['required'],
-            'body' => ['required']
+            'body' => ['required'],
+            'slug' => ['required', Rule::unique('posts', 'slug')]
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'slug' => Str::slug($this->title),
+        ]);
     }
 }

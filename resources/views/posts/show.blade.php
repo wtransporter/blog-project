@@ -15,6 +15,17 @@
                         </h3>
                     </div>
                 </div>
+                @auth
+                    <div class="lg:text-center mt-2">
+                        <form action="{{ route('followers.store', $post->user_id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="uppercase text-xs font-semibold border px-3 py-1 rounded-full
+                                {{ auth()->user()->followers->contains($post->user_id) ? 'border-red-500 text-red-500' : 'border-blue-500 text-blue-500' }}">
+                                {{ auth()->user()->followers->contains($post->user_id) ? 'Unfollow' : 'Follow' }}
+                            </button>
+                        </form>
+                    </div>
+                @endauth
             </div>
             <div class="flex-1 flex flex-col">
                 <header class="flex justify-between items-center mt-8 lg:mt-0">

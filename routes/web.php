@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\Admin\AdminPostController;
@@ -22,8 +23,11 @@ use App\Http\Controllers\Admin\PublishPostController;
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
+
 Route::get('bookmarks', [BookmarkController::class, 'index'])->name('bookmarks')->middleware('auth');
 Route::post('bookmarks/{post}', [BookmarkController::class, 'store'])->name('bookmarks.store')->middleware('auth');
+
+Route::post('followers/{user}', [FollowerController::class, 'store'])->name('followers.store')->middleware('auth');
 
 Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function() {
     Route::resource('posts', AdminPostController::class)->except('show');

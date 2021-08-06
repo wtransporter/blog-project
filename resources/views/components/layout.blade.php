@@ -22,8 +22,11 @@
             <div class="mt-8 md:mt-0 flex items-center text-blue-500">
                 @auth
                     @if (Auth::user()->is_admin)
-                        <a href="{{ route('posts.index') }}" class="text-xs text-gray-700 hover:underline mr-4 flex items-center">Dashboard</a>
+                        <a href="{{ route('posts.index') }}" 
+                            class="text-xs text-gray-700 {{ request()->routeIs('posts.index') ? 'underline' : '' }} hover:underline mr-4 flex items-center">Dashboard</a>
                     @endif
+                    <a href="{{ route('bookmarks') }}" 
+                        class="text-xs text-gray-700 {{ request()->routeIs('bookmarks') ? 'underline' : '' }} hover:underline mr-4 flex items-center">Bookmarks</a>
                     <form action="/logout" method="POST" class="text-xs">
                         @csrf
                         <button class="uppercase text-xs font-bold" href="/logout">Log Out</button>

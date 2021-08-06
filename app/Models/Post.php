@@ -47,4 +47,20 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function publish()
+    {
+        if (! $this->published_at) {
+            $this->published_at = now();
+        } else {
+            $this->published_at = null;
+        }
+
+        $this->save();
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('published_at')->latest();
+    }
 }

@@ -47,10 +47,14 @@
                                                         </div>
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap">
-                                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                                        {{ $post->published_at ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
-                                                        {{ $post->published_at ? 'published' : 'Unpablished' }}
-                                                        </span>
+                                                        <a href="#" x-data={} @click.prevent="document.querySelector('#form-delete-{{$post->id}}').submit()"
+                                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                                            {{ $post->published_at ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
+                                                            {{ $post->published_at ? 'published' : 'Unpablished' }}
+                                                        </a>
+                                                        <form id="form-delete-{{$post->id}}" action="{{ route('publish', $post->id) }}" method="POST" class="hidden">
+                                                            @csrf
+                                                        </form>
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex space-x-2">
                                                         <a href="{{ route('posts.edit', $post->id) }}" class="text-blue-500 hover:text-blue-700">Edit</a>

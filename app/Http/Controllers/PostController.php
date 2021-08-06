@@ -14,6 +14,8 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        $post->increment('views');
+
         return view('posts.show', [
             'post' => $post->load('comments', 'comments.author')
         ]);

@@ -26,6 +26,7 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
+            'user_id' => ['exists:users,id'],
             'category_id' => ['required', 'exists:categories,id'],
             'title' => ['required'],
             'image' => $this->post ? ['image'] : ['required', 'image'],

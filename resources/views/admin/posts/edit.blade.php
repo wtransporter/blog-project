@@ -39,6 +39,21 @@
                                 </option>
                             @endforeach
                         </select>
+                        
+                        <label class="block mt-4 uppercase font-semibold text-xs text-gray-700" for="image">
+                            Author
+                        </label>
+                        <select 
+                            name="user_id" 
+                            id="user_id" 
+                            class="block border border-gray-400 p-2 w-1/3 rounded focus:ring-1 focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none">
+                            <option value="0">Choose</option>
+                            @foreach (\App\Models\User::all() as $user)
+                                <option value="{{ $user->id }}" {{ old('user_id', $post->author->id) == $user->id ? 'selected' : '' }}>
+                                    {{ $user->name }}
+                                </option>
+                            @endforeach
+                        </select>
                         <x-primary-button class="mt-4">
                             Submit
                         </x-primary-button>

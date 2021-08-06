@@ -12,10 +12,10 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.index')">
+                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.posts.create')" :active="request()->routeIs('admin.posts.create')">
+                    <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
                         {{ __('New post') }}
                     </x-nav-link>
                 </div>
@@ -66,7 +66,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.index')">
+            <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>

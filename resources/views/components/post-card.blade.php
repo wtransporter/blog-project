@@ -5,8 +5,9 @@
         <img class="rounded-xl w-full" src="{{ asset($post->image ? 'storage/'.$post->image : 'img/image4.png') }}" alt="Image 4">
     </div>
     <div class="flex-1 flex flex-col justify-between">
-        <header class="mt-8">
+        <header class="mt-8 flex items-center justify-between">
             <x-category-button :category="$post->category" />
+            <x-bookmark-button :post="$post" />
         </header>
         <div class="text-3xl mt-4">
             <h1>

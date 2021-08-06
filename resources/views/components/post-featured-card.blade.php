@@ -6,8 +6,9 @@
     </div>
     <div class="flex-1 flex flex-col justify-between">
         <div>
-            <header class="mt-8 lg:mt-0">
+            <header class="mt-8 lg:mt-0 flex items-center justify-between">
                 <x-category-button :category="$post->category" />
+                <x-bookmark-button :post="$post" />
             </header>
             <div class="text-3xl mt-4">
                 <h1>

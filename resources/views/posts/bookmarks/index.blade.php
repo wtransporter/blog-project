@@ -10,7 +10,7 @@
 
     <main class="max-w-6xl mx-auto">
         @if ($posts->count())
-            <div class="lg:grid lg:grid-cols-3 gap-6 mt-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                 @foreach ($posts as $post)
                     <x-bookmark-card 
                         :post="$post" 

@@ -14,6 +14,8 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        abort_if(! $post->published_at, 404);
+
         $post->increment('views');
 
         return view('posts.show', [

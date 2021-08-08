@@ -27,6 +27,7 @@ Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store
 Route::get('bookmarks', [BookmarkController::class, 'index'])->name('bookmarks')->middleware('auth');
 Route::post('bookmarks/{post}', [BookmarkController::class, 'store'])->name('bookmarks.store')->middleware('auth');
 
+Route::get('followers', [FollowerController::class, 'index'])->name('followers.index')->middleware('auth');
 Route::post('followers/{user}', [FollowerController::class, 'store'])->name('followers.store')->middleware('auth');
 
 Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function() {

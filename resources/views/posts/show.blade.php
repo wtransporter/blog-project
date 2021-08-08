@@ -15,7 +15,7 @@
                         </h3>
                     </div>
                 </div>
-                @auth
+                @can('follow', $post)
                     <div class="lg:text-center mt-2">
                         <form action="{{ route('followers.store', $post->user_id) }}" method="POST">
                             @csrf
@@ -25,7 +25,7 @@
                             </button>
                         </form>
                     </div>
-                @endauth
+                @endcan
             </div>
             <div class="flex-1 flex flex-col">
                 <header class="flex justify-between items-center mt-8 lg:mt-0">

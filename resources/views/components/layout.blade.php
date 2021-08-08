@@ -27,6 +27,8 @@
                     @endif
                     <a href="{{ route('bookmarks') }}" 
                         class="text-xs text-gray-700 {{ request()->routeIs('bookmarks') ? 'underline' : '' }} hover:underline mr-4 flex items-center">Bookmarks</a>
+                    <a href="{{ route('followers.index') }}" 
+                        class="text-xs text-gray-700 {{ request()->routeIs('followers.index') ? 'underline' : '' }} hover:underline mr-4 flex items-center">Following</a>
                     <form action="/logout" method="POST" class="text-xs">
                         @csrf
                         <button class="uppercase text-xs font-bold" href="/logout">Log Out</button>

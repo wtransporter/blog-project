@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\PostCreated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -57,6 +58,8 @@ class Post extends Model
         }
 
         $this->save();
+
+        event(new PostCreated($this));
     }
 
     public function scopePublished($query)

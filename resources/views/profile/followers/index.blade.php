@@ -51,7 +51,7 @@
                                                             <form action="{{ route('followers.store', $follower->id) }}" method="POST">
                                                                 @csrf
                                                                 <button type="submit" class="uppercase text-xs font-semibold border px-3 py-1 rounded-full
-                                                                    {{ auth()->user()->followers->contains($follower->id) ? 'border-red-500 text-red-500' : 'border-blue-500 text-blue-500' }}">
+                                                                    {{ auth()->user()->followers->contains($follower->id) ? 'border-green-500 text-green-500' : 'border-red-500 text-red-500' }}">
                                                                     {{ auth()->user()->followers->contains($follower->id) ? 'Unfollow' : 'Follow' }}
                                                                 </button>
                                                             </form>

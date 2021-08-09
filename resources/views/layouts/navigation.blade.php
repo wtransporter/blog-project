@@ -37,7 +37,7 @@
                                 <x-dropdown-link :href="route('categories.index')">
                                     {{ __('All') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('logout')">
+                                <x-dropdown-link :href="route('categories.create')">
                                     {{ __('New Category') }}
                                 </x-dropdown-link>
                                 <form method="POST" action="{{ route('logout') }}">

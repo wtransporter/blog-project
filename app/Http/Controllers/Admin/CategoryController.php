@@ -16,6 +16,20 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('admin.categories.create');
+    }
+
+    public function store(UpdateCategoryRequest $request)
+    {
+        $attributes = $request->validated();
+
+        Category::create($attributes);
+
+        return redirect()->route('categories.create')->with('success', 'Category created successfully.');
+    }
+
     public function edit(Category $category)
     {
         return view('admin.categories.edit', compact('category'));
@@ -38,7 +52,6 @@ class CategoryController extends Controller
             $category->delete();
         } 
         catch (\Illuminate\Database\QueryException $e) {
-            //23000 is sql code for integrity constraint violation
             if($e->getCode() == "23000"){
                 throw \Illuminate\Validation\ValidationException::withMessages(['errors' => 'Cannot delete category. There are assigned posts.']);
             }

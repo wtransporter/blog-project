@@ -60,7 +60,7 @@
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex space-x-2">
                                                         <a href="{{ route('profile.edit', $user->username) }}" class="text-blue-500 hover:text-blue-700">Edit</a>
-                                                        <form action="{{ route('profile.destroy', $user->username) }}" method="POST">
+                                                        <form action="{{ route('profile.destroy', $user->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="text-gray-400 hover:text-gray-600">Delete</button>

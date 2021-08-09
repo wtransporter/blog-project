@@ -22,6 +22,13 @@ class ProfileController extends Controller
         return view('profile.edit', compact('user'));
     }
 
+    /**
+     * Update given user profile
+     *
+     * @param UpdateUserProfileRequest $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(UpdateUserProfileRequest $request, User $user)
     {
         $attributes = $request->validated();
@@ -35,5 +42,18 @@ class ProfileController extends Controller
         $user->update($attributes);
 
         return redirect()->route('profile.edit', $user)->with('success', 'Profile updated.');
+    }
+
+    /**
+    * Delete the given user.
+    *
+    * @param User $user
+    * @return \Illuminate\Http\RedirectResponse
+    */
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect()->back()->with('success', 'User successfully deleted.');
     }
 }

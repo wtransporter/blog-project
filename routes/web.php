@@ -39,6 +39,9 @@ Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'admin'], functi
     Route::resource('posts', AdminPostController::class)->except('show');
     Route::post('publish/{post}', [PublishPostController::class, 'store'])->name('publish');
     Route::resource('categories', CategoryController::class)->except('show');
+
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::delete('profile/{user}', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::post('/newsletter', NewsletterController::class);

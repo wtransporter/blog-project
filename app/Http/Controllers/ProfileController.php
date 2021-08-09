@@ -2,16 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateUserProfileRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\UpdateUserProfileRequest;
 
 class ProfileController extends Controller
 {
-    public function edit()
+    public function index()
     {
-        return view('profile.edit', [
-            'user' => auth()->user()
+        return view('profile.index', [
+            'users' => User::paginate(10)
         ]);
+    }
+
+    public function edit(User $user)
+    {
+        Gate::authorize('update', $user);
+
+        return view('profile.edit', compact('user'));
     }
 
     public function update(UpdateUserProfileRequest $request, User $user)

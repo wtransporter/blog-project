@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\NewsletterController;
@@ -31,7 +32,10 @@ Route::post('bookmarks/{post}', [BookmarkController::class, 'store'])->name('boo
 Route::get('followers', [FollowerController::class, 'index'])->name('followers.index')->middleware('auth');
 Route::post('followers/{user}', [FollowerController::class, 'store'])->name('followers.store')->middleware('auth');
 
-Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function() {
+Route::get('profile/{user:username}/edit', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
+Route::patch('profile/{user}', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+
+Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'admin'], function() {
     Route::resource('posts', AdminPostController::class)->except('show');
     Route::post('publish/{post}', [PublishPostController::class, 'store'])->name('publish');
     Route::resource('categories', CategoryController::class)->except('show');

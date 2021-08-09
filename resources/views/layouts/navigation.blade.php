@@ -40,15 +40,6 @@
                                 <x-dropdown-link :href="route('categories.create')">
                                     {{ __('New Category') }}
                                 </x-dropdown-link>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <x-dropdown-link :href="route('logout')"
-                                            onclick="event.preventDefault();
-                                                        this.closest('form').submit();">
-                                        {{ __('Log Out') }}
-                                    </x-dropdown-link>
-                                </form>
                             </x-slot>
                         </x-dropdown>
                     </div>
@@ -105,6 +96,12 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
                 {{ __('New Post') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+                {{ __('Manage Categories') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('categories.create')" :active="request()->routeIs('categories.create')">
+                {{ __('New Category') }}
             </x-responsive-nav-link>
         </div>
 

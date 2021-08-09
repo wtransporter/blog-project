@@ -25,14 +25,43 @@
                         <a href="{{ route('posts.index') }}" 
                             class="text-xs text-gray-700 {{ request()->routeIs('posts.index') ? 'underline' : '' }} hover:underline mr-4 flex items-center">Dashboard</a>
                     @endif
-                    <a href="{{ route('bookmarks') }}" 
-                        class="text-xs text-gray-700 {{ request()->routeIs('bookmarks') ? 'underline' : '' }} hover:underline mr-4 flex items-center">Bookmarks</a>
-                    <a href="{{ route('followers.index') }}" 
-                        class="text-xs text-gray-700 {{ request()->routeIs('followers.index') ? 'underline' : '' }} hover:underline mr-4 flex items-center">Following</a>
-                    <form action="/logout" method="POST" class="text-xs">
-                        @csrf
-                        <button class="uppercase text-xs font-bold" href="/logout">Log Out</button>
-                    </form>
+
+                    <x-cat-dropdown>
+                        <x-slot name="trigger">
+                            <div>
+                                <button class="hover:text-blue-700 hover:underline flex">
+                                    {{ auth()->user()->name }}
+                                    <svg class="transform -rotate-90 pointer-events-none" style="right: 12px;" width="22" height="22" viewBox="0 0 22 22">
+                                        <g fill="none" fill-rule="evenodd">
+                                            <path stroke="#000" stroke-opacity=".012" stroke-width=".5" d="M21 1v20.16H.84V1z">
+                                            </path>
+                                            <path fill="#222" d="M13.854 7.224l-3.847 3.856 3.847 3.856-1.184 1.184-5.04-5.04 5.04-5.04z"></path>
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
+                        </x-slot>
+
+                        <div>
+                            <x-dropdown-item href="{{ route('profile.edit', auth()->user()->username) }}" 
+                                :active="request()->routeIs('profile.edit')"
+                                class="text-sm font-semibold mr-4 flex items-center">Profile</x-dropdown-item>
+                            <x-dropdown-item href="{{ route('bookmarks') }}" 
+                                :active="request()->routeIs('bookmarks')"
+                                class="text-sm font-semibold mr-4 flex items-center">Bookmarks</x-dropdown-item>
+                            <x-dropdown-item href="{{ route('followers.index') }}" 
+                                :active="request()->routeIs('followers.index')"
+                                class="text-sm font-semibold mr-4 flex items-center">Following</x-dropdown-item>
+                            <x-dropdown-item class="cursor-pointer border-t border-gray-300" 
+                                x-data={} @click.prevent="document.querySelector('#logout-form').submit();">
+                                Logout
+                            </x-dropdown-item>
+                            <form id="logout-form" action="/logout" method="POST" class="text-xs hidden">
+                                @csrf
+                                {{-- <button class="uppercase text-xs font-bold" href="/logout">Log Out</button> --}}
+                            </form>
+                        </div>
+                    </x-cat-dropdown>
                 @else
                     <a class="uppercase text-xs font-bold" href="/register">Register</a>
                     <a class="uppercase text-xs font-bold ml-4" href="/login">Log In</a>

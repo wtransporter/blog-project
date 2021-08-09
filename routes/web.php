@@ -10,6 +10,7 @@ use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\PublishPostController;
+use App\Http\Controllers\ToggleAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,8 @@ Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'admin'], functi
 
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::delete('profile/{user}', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('permission/{user}', [ToggleAdminController::class, 'store'])->name('permission');
 });
 
 Route::post('/newsletter', NewsletterController::class);

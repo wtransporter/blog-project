@@ -30,8 +30,8 @@
                                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Username
                                                 </th>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Role
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                                                    Is Admin
                                                 </th>
                                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     Action
@@ -53,10 +53,19 @@
                                                             {{ $user->username }}
                                                         </div>
                                                     </td>
-                                                    <td class="px-6 py-4 whitespace-nowrap">
-                                                        <div class="text-sm text-gray-900">
-                                                            {{ $user->is_admin ? 'Admin' : 'User' }}
-                                                        </div>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-center">
+                                                        @if (auth()->id() !== $user->id)                                                            
+                                                        <form id="activate-form{{$user->id}}" x-data={} action="{{ route('permission', $user->id) }}" method="POST">
+                                                            @csrf
+                                                            <input @click.prevent="document.querySelector('#activate-form{{$user->id}}').submit()"
+                                                                type="checkbox" 
+                                                                name="is_admin" 
+                                                                id="is_admin{{$user->id}}" 
+                                                                {{ $user->is_admin ? 'checked' : ''}}
+                                                                class="form-checkbox text-blue-600 rounded"
+                                                                >
+                                                        </form>
+                                                        @endif
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex space-x-2">
                                                         <a href="{{ route('profile.edit', $user->username) }}" class="text-blue-500 hover:text-blue-700">Edit</a>

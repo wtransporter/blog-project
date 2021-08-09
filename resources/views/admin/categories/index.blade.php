@@ -9,6 +9,13 @@
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <p class="text-red-800 text-md mb-4 p-4 bg-red-100 max-w-4xl mx-auto rounded">
+                                {{ $error }}
+                            </p>
+                        @endforeach
+                    @endif
                     <!-- This example requires Tailwind CSS v2.0+ -->
                     <div class="flex flex-col">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

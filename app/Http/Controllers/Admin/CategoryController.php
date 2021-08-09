@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -13,6 +14,22 @@ class CategoryController extends Controller
         return view('admin.categories.index', [
             'categoriesAll' => Category::paginate(10)
         ]);
+    }
+
+    public function edit(Category $category)
+    {
+        return view('admin.categories.edit', compact('category'));
+    }
+
+    public function update(UpdateCategoryRequest $request, Category $category)
+    {
+        $attributes = $request->validated();
+
+        $category->update($attributes);
+
+        Artisan::call('cache:clear');
+
+        return redirect()->route('categories.edit', $category)->with('success', 'Category updated');
     }
 
     public function destroy(Category $category)

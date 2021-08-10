@@ -28,6 +28,7 @@ class UpdateUserProfileRequest extends FormRequest
             'name' => ['required'],
             'username' => ['required', Rule::unique('users', 'username')->ignore($this->user)],
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($this->user)],
+            'image' => ['image'],
             'password' => ['confirmed']
         ];
     }

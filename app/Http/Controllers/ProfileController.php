@@ -39,6 +39,10 @@ class ProfileController extends Controller
             $attributes['password'] = bcrypt($attributes['password']);
         }
 
+        if ($request->has('image')) {
+            $attributes['image'] = $request->file('image')->store('users');
+        }
+
         $user->update($attributes);
 
         return redirect()->route('profile.edit', $user)->with('success', 'Profile updated.');

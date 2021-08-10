@@ -19,7 +19,7 @@
                     <img class="h-10" src="{{ asset('img/logo.png') }}" alt="Logo">
                 </a>
             </div>
-            <div class="mt-8 md:mt-0 flex items-center text-blue-500">
+            <div class="mt-8 md:mt-0 flex items-center text-gray-500">
                 @auth
                     @if (Auth::user()->is_admin)
                         <a href="{{ route('posts.index') }}" 
@@ -28,7 +28,7 @@
 
                     <x-cat-dropdown>
                         <x-slot name="trigger">
-                            <div>
+                            <div class="flex items-center space-x-2">
                                 <button class="hover:text-blue-700 hover:underline flex">
                                     {{ auth()->user()->name }}
                                     <svg class="transform -rotate-90 pointer-events-none" style="right: 12px;" width="22" height="22" viewBox="0 0 22 22">
@@ -39,6 +39,7 @@
                                         </g>
                                     </svg>
                                 </button>
+                                <img class="rounded-xl ml-4 cursor-pointer hover:border hover:border-gray-500" src="{{ asset(auth()->user()->image ? 'storage/'.auth()->user()->image : 'img/no-image.png') }}" width="50" height="50" alt="Image 1">
                             </div>
                         </x-slot>
 
@@ -52,13 +53,12 @@
                             <x-dropdown-item href="{{ route('followers.index') }}" 
                                 :active="request()->routeIs('followers.index')"
                                 class="text-sm font-semibold mr-4 flex items-center">Following</x-dropdown-item>
-                            <x-dropdown-item class="cursor-pointer border-t border-gray-300" 
+                            <x-dropdown-item class="cursor-pointer border-t border-gray-300 text-blue-500 font-semibold" 
                                 x-data={} @click.prevent="document.querySelector('#logout-form').submit();">
                                 Logout
                             </x-dropdown-item>
                             <form id="logout-form" action="/logout" method="POST" class="text-xs hidden">
                                 @csrf
-                                {{-- <button class="uppercase text-xs font-bold" href="/logout">Log Out</button> --}}
                             </form>
                         </div>
                     </x-cat-dropdown>

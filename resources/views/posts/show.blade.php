@@ -8,7 +8,7 @@
                     Published <time>{{ $post->created_at->format('F j, Y, G:i') }}</time>
                 </p>
                 <div class="flex lg:justify-center items-center mt-4">
-                    <img class="inline-flex rounded-full mr-2" src="https://i.pravatar.cc/50?u={{ $post->author->id }}" alt="Avatar" width="50" height="50">
+                    <img class="inline-flex rounded-full mr-2" src="{{ asset($post->author->image ? 'storage/' . $post->author->image : 'https://i.pravatar.cc/50?u=' . $post->author->id) }}" alt="Avatar" width="50" height="50">
                     <div class="text-sm">
                         <h3>
                             <a class="font-bold hover:text-blue-500" href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a>
@@ -53,7 +53,7 @@
                         <form action="/posts/{{ $post->slug }}/comments" method="POST">
                             @csrf
                             <header class="flex items-center">
-                                <img src="https://i.pravatar.cc/50?u={{ auth()->id() }}" alt="" class="rounded-full mr-4" width="50" height="50">
+                                <img src="{{ asset(auth()->user()->image ? 'storage/' . auth()->user()->image : 'https://i.pravatar.cc/50?u=' . auth()->id()) }}" alt="" class="rounded-full mr-4" width="50" height="50">
                                 <h3>Want to comment ?</h3>
                             </header>
 

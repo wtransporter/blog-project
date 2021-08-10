@@ -14,7 +14,9 @@
                     />
                 @endforeach
             </div>
-            {{ $posts->links() }}
+            <div class="mt-4">
+                {{ $posts->links() }}
+            </div>
         @else
             <p class="text-center mt-8">No posts yet. Please check later.</p>
         @endif

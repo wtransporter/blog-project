@@ -2,7 +2,7 @@
 <x-card-panel>
     <article class="flex space-x-4">
         <div class="flex-shrink-0">
-            <img src="https://i.pravatar.cc/60?u={{ $comment->user_id }}" alt="" class="rounded-xl" width="60" height="60">
+            <img src="{{ asset($comment->author->image ? 'storage/' . $comment->author->image : 'https://i.pravatar.cc/50?u=' . $comment->user_id) }}" alt="" class="rounded-xl" width="60" height="60">
         </div>
         <div class="space-y-4">
             <header>

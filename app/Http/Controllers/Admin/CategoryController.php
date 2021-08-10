@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Artisan;
 use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
@@ -41,7 +40,7 @@ class CategoryController extends Controller
 
         $category->update($attributes);
 
-        Artisan::call('cache:clear');
+        cache()->forget('categories');
 
         return redirect()->route('categories.edit', $category)->with('success', 'Category updated');
     }
@@ -57,7 +56,7 @@ class CategoryController extends Controller
             }
         }
 
-        Artisan::call("cache:clear");
+        cache()->forget('categories');
 
         return redirect()->back()->with('success', 'Category deleted.');
     }

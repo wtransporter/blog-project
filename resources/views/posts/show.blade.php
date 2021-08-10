@@ -72,6 +72,8 @@
                             </div>
                         </form>
                     </x-card-panel>
+                @else
+                    <p class="p-2"><a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700">Sign in</a> to comment</p>
                 @endauth
 
                 @foreach ($post->comments as $comment)
